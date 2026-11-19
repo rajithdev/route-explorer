@@ -1,0 +1,151 @@
+{
+  "name": "route-explorer",
+  "displayName": "Route Explorer for Next.js & Express",
+  "description": "See every Next.js and Express route in a sidebar tree, jump to its code, and send it a test request.",
+  "version": "0.1.0",
+  "publisher": "rajithdev",
+  "author": "Rajith Raja",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rajithdev/route-explorer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rajithdev/route-explorer/issues"
+  },
+  "homepage": "https://github.com/rajithdev/route-explorer#readme",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#111827",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Testing",
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "routes",
+    "next.js",
+    "express",
+    "api",
+    "endpoints",
+    "rest client",
+    "app router"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "routeExplorer",
+          "title": "Route Explorer",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "routeExplorer": [
+        {
+          "id": "routeExplorer.routes",
+          "name": "Routes"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "routeExplorer.routes",
+        "when": "routeExplorer.scanned",
+        "contents": "No Next.js or Express routes found in this workspace.\n[Refresh](command:routeExplorer.refresh)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "routeExplorer.refresh",
+        "title": "Refresh Routes",
+        "category": "Route Explorer",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "routeExplorer.copyPath",
+        "title": "Copy Route Path",
+        "category": "Route Explorer"
+      },
+      {
+        "command": "routeExplorer.sendRequest",
+        "title": "Send Test Request",
+        "category": "Route Explorer",
+        "icon": "$(play)"
+      },
+      {
+        "command": "routeExplorer.setBaseUrl",
+        "title": "Set Base URL",
+        "category": "Route Explorer"
+      }
+    ],
+    "configuration": {
+      "title": "Route Explorer",
+      "properties": {
+        "routeExplorer.baseUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "Where test requests are sent, unless you choose another base URL for the workspace with the Set Base URL command."
+        }
+      }
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "routeExplorer.refresh",
+          "when": "view == routeExplorer.routes",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "routeExplorer.sendRequest",
+          "when": "view == routeExplorer.routes && viewItem == route",
+          "group": "inline"
+        },
+        {
+          "command": "routeExplorer.sendRequest",
+          "when": "view == routeExplorer.routes && viewItem == route",
+          "group": "1_request"
+        },
+        {
+          "command": "routeExplorer.copyPath",
+          "when": "view == routeExplorer.routes && viewItem == route",
+          "group": "2_copy"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "routeExplorer.copyPath",
+          "when": "false"
+        },
+        {
+          "command": "routeExplorer.sendRequest",
+          "when": "false"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "test": "tsc && node --test \"out/test/**/*.test.js\"",
+    "vscode:prepublish": "npm run typecheck && node esbuild.mjs --production",
+    "package": "npx --yes @vscode/vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.6.0"
+  }
+}
