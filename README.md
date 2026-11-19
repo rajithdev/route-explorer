@@ -4,6 +4,14 @@ A VS Code extension that lists every Next.js and Express route in your workspace
 
 ![The Routes sidebar listing Next.js and Express routes, with a route's source open in the editor and a test response in the output panel](media/screenshot.png)
 
+## Install
+
+Install it from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=rajithdev.route-explorer), or search for "Route Explorer for Next.js & Express" in the Extensions view. From a terminal:
+
+```bash
+code --install-extension rajithdev.route-explorer
+```
+
 ## What it finds
 
 **Next.js** (any folder whose `package.json` depends on `next`)
@@ -28,7 +36,7 @@ Hover a route and click the play button, or right-click it and choose **Send Tes
 - Anything other than `GET`, `HEAD` or `OPTIONS` asks for confirmation before it is sent to a server that is not on your machine.
 - Redirects are shown, not followed.
 
-## Run it
+## Run from source
 
 ```bash
 npm install
