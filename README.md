@@ -2,6 +2,8 @@
 
 A VS Code extension that lists every Next.js and Express route in your workspace in a sidebar tree. Click a route to jump to the line that defines it.
 
+![The Routes sidebar listing Next.js and Express routes, with a route's source open in the editor and a test response in the output panel](media/screenshot.png)
+
 ## What it finds
 
 **Next.js** (any folder whose `package.json` depends on `next`)

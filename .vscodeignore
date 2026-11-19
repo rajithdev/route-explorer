@@ -1,5 +1,6 @@
 .vscode/**
 .github/**
+media/screenshot.png
 src/**
 test/**
 out/**
